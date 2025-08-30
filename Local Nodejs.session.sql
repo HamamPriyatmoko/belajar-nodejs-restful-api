@@ -1,4 +1,5 @@
 CREATE DATABASE belajar_nodejs_restful_api
 Use belajar_nodejs_restful_api
 
-show tables contacts;
+show tables
+Select * from contacts

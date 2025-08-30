@@ -29,7 +29,7 @@ describe('POST /api/user', function () {
       name: '',
     });
 
-    logger.info(result.body);
+    // logger.info(result.body);
 
     expect(result.status).toBe(400);
     expect(result.body.errors).toBeDefined();
@@ -42,7 +42,7 @@ describe('POST /api/user', function () {
       name: 'test',
     });
 
-    logger.info(result.body);
+    // logger.info(result.body);
 
     expect(result.status).toBe(200);
     expect(result.body.data.username).toBe('test');
@@ -55,7 +55,7 @@ describe('POST /api/user', function () {
       name: 'test',
     });
 
-    logger.info(result.body);
+    // logger.info(result.body);
 
     expect(result.status).toBe(400);
     expect(result.body.errors).toBeDefined();
@@ -77,7 +77,7 @@ describe('POST /api/user/login', function () {
       password: 'rahasia',
     });
 
-    logger.info(result.body);
+    // logger.info(result.body);
 
     expect(result.status).toBe(200);
     expect(result.body.data.token).toBeDefined();
@@ -90,7 +90,7 @@ describe('POST /api/user/login', function () {
       password: '',
     });
 
-    logger.info(result.body);
+    // logger.info(result.body);
 
     expect(result.status).toBe(400);
     expect(result.body.errors).toBeDefined();
@@ -102,7 +102,7 @@ describe('POST /api/user/login', function () {
       password: 'salah',
     });
 
-    logger.info(result.body);
+    // logger.info(result.body);
 
     expect(result.status).toBe(401);
     expect(result.body.errors).toBeDefined();
@@ -114,7 +114,7 @@ describe('POST /api/user/login', function () {
       password: 'salah',
     });
 
-    logger.info(result.body);
+    // logger.info(result.body);
 
     expect(result.status).toBe(401);
     expect(result.body.errors).toBeDefined();
@@ -133,7 +133,7 @@ describe('GET /api/user/current', function () {
   it('Should can get current user', async () => {
     const result = await supertest(web).get('/api/user/current').set('Authorization', 'test');
 
-    logger.info(result);
+    // logger.info(result);
 
     expect(result.status).toBe(200);
     expect(result.body.data.username).toBe('test');
@@ -143,7 +143,7 @@ describe('GET /api/user/current', function () {
   it('Should reject if token is invalid', async () => {
     const result = await supertest(web).get('/api/user/current').set('Authorization', 'salah');
 
-    logger.info(result);
+    // logger.info(result);
 
     expect(result.status).toBe(401);
     expect(result.body.errors).toBeDefined();
@@ -168,7 +168,7 @@ describe('PATCH /api/user/current', function () {
         password: 'rahasialagi',
       });
 
-    logger.info(result);
+    // logger.info(result);
 
     expect(result.status).toBe(200);
     expect(result.body.data.username).toBe('test');
@@ -187,7 +187,7 @@ describe('PATCH /api/user/current', function () {
         name: 'Hamam',
       });
 
-    logger.info(result);
+    // logger.info(result);
 
     expect(result.status).toBe(200);
     expect(result.body.data.username).toBe('test');
@@ -202,7 +202,7 @@ describe('PATCH /api/user/current', function () {
         password: 'rahasialagi',
       });
 
-    logger.info(result);
+    // logger.info(result);
 
     expect(result.status).toBe(200);
     expect(result.body.data.username).toBe('test');
@@ -219,7 +219,7 @@ describe('PATCH /api/user/current', function () {
       .set('Authorization', 'salah')
       .send();
 
-    logger.info(result);
+    // logger.info(result);
 
     expect(result.status).toBe(401);
   });
