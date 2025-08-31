@@ -34,8 +34,27 @@ const update = async (req, res, next) => {
 
 const remove = async (req, res, next) => {
   try {
-    await contactService.get(req.user.username, req.params.contactId);
-    res.status(200).json({ data: 'Ok' });
+    await contactService.remove(req.user.username, req.params.contactId);
+    res.status(200).json({ data: 'OK' });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const search = async (req, res, next) => {
+  try {
+    const user = req.user.username;
+
+    const request = {
+      name: req.query.name,
+      email: req.query.email,
+      phone: req.query.phone,
+      size: req.query.size,
+      page: req.query.page,
+    };
+
+    const result = await contactService.search(user, request);
+    res.status(200).json({ data: result.data, paging: result.paging });
   } catch (error) {
     next(error);
   }
@@ -46,4 +65,5 @@ export default {
   get,
   update,
   remove,
+  search,
 };

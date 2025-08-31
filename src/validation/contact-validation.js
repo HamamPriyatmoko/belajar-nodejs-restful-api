@@ -17,4 +17,17 @@ const updateContactValidation = Yup.object({
   phone: Yup.string().max(20).optional(),
 });
 
-export { createContactValidation, getContactValidation, updateContactValidation };
+const searchContactValidation = Yup.object({
+  page: Yup.number().min(1).positive().default(1),
+  size: Yup.number().min(1).positive().max(100).default(10),
+  name: Yup.string().optional(),
+  email: Yup.string().optional(),
+  phone: Yup.string().optional(),
+});
+
+export {
+  createContactValidation,
+  getContactValidation,
+  updateContactValidation,
+  searchContactValidation,
+};
