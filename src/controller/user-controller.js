@@ -12,7 +12,14 @@ const register = async (req, res, next) => {
 const login = async (req, res, next) => {
   try {
     const result = await userService.login(req.body);
-    res.status(200).json({ data: result });
+    console.log(result.token);
+    res
+      .status(200)
+      .cookie('session_token', result.token, {
+        httpOnly: true,
+        path: '/',
+      })
+      .json({ data: result });
   } catch (error) {
     // console.log(error);
     next(error);
@@ -22,6 +29,7 @@ const login = async (req, res, next) => {
 const getUser = async (req, res, next) => {
   try {
     const username = req.user.username;
+    console.log(username);
     const result = await userService.get(username);
     res.status(200).json({ data: result });
   } catch (error) {
@@ -45,7 +53,7 @@ const update = async (req, res, next) => {
 const logout = async (req, res, next) => {
   try {
     await userService.logout(req.user.username);
-    res.status(200).json({ data: 'OK' });
+    res.status(200).clearCookie('session_token', { path: '/' }).json({ data: 'OK' });
   } catch (error) {
     next(error);
   }

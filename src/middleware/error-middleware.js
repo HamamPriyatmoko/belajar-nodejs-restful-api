@@ -1,7 +1,7 @@
 import { ResponseError } from '../error/response-error.js';
 
 const errorMiddleware = (err, req, res, next) => {
-  console.log('Ini adalah error status', err.status);
+  // console.log('Ini adalah error status', err.status);
   if (!err) {
     next();
     return;

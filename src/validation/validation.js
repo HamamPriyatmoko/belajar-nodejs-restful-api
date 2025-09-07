@@ -6,7 +6,7 @@ const validate = async (schema, request) => {
       stripUnknown: true,
       abortEarly: false,
     });
-    console.log('Ini adalah hasil validate', result);
+    // console.log('Ini adalah hasil validate', result);
     return result;
   } catch (error) {
     throw new ResponseError(400, error.errors);
